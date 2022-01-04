@@ -19,8 +19,8 @@ def freeSpace (position):    #Method to define if a space is free or not so the 
         return False
 
 def checkDraw ():
-    for value in board.values():
-        if board[value] == ' ':
+    for key in board.keys():
+        if board[key] == ' ':
             return False
 
     return True
