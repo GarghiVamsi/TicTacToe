@@ -112,9 +112,9 @@ def forComputerMove ():
 
 def minimax (board, depth, isMax):
     if checkWhoWon (comp):
-        return 100
+        return 1000
     elif checkWhoWon(player):
-        return -100
+        return -1000
     elif checkDraw():
         return 0
     if isMax:
@@ -126,9 +126,7 @@ def minimax (board, depth, isMax):
                 score = minimax(board,0,False)
                 board[key] = ' '
                 if(score > bestScore):
-                    bestScore = score2
-                    
-
+                    bestScore = score
         return bestScore
 
     else:
