@@ -18,23 +18,41 @@ def freeSpace (position):    #Method to define if a space is free or not so the 
     else:
         return False
 
-def isDraw ():
+def checkDraw ():
     for value in board.values():
         if board[value] == ' ':
             return False
+
     return True
 
-def isWin ():
-    pass
+def checkWin ():
+    if (board[1] == board[2] and board[1] == board[3] and board[1] != ' '):
+        return True
+    elif (board[4] == board[5] and board[4] == board[6] and board[4] != ' '):
+        return True
+    elif (board[7] == board[8] and board[7] == board[9] and board[7] != ' '):
+        return True
+    elif (board[1] == board[4] and board[1] == board[7] and board[1] != ' '):
+        return True
+    elif (board[2] == board[5] and board[2] == board[8] and board[2] != ' '):
+        return True
+    elif (board[3] == board[6] and board[3] == board[9] and board[3] != ' '):
+        return True
+    elif (board[1] == board[5] and board[1] == board[9] and board[1] != ' '):
+        return True
+    elif (board[7] == board[5] and board[7] == board[3] and board[7] != ' '):
+        return True
+    else:
+        return False
 
 def main(letter,position):
     if freeSpace(position):
         board[position] = letter
         myBoard(board)
-        if (isDraw()):
+        if (checkDraw()):
             print("Draw!")
             exit()
-        if (isWin()):
+        if (checkWin()):
             if letter == 'X':
                 print("bot wins!")
                 exit ()
@@ -49,3 +67,19 @@ def main(letter,position):
         main(letter,position)
         return
 
+player = 'O'
+comp = 'X'
+
+def forPlayerMove():
+    position = int(input("enter position for 'O'"))
+    main(player,position)
+    return
+
+def forComputerMove ():
+    position = int(input("enter position for 'X'"))
+    main(comp,position)
+    return
+
+while not checkWin():
+    forComputerMove()
+    forPlayerMove()
